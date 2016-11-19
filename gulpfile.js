@@ -33,7 +33,7 @@ function customPlumber(errTitle){
   });
 }
 
-gulp.task('watch', ['sass'], function(){
+gulp.task('watch', ['browserSync','sass'], function(){
   gulp.watch('app/scss/**/*.scss', ['sass']);
 })
 
