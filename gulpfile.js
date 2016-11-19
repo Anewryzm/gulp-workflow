@@ -8,7 +8,7 @@ gulp.task('sass', function(){
   // in app/scss and children dirs
   return gulp.src('app/scss/**/*.scss')
   // Check for errors all plugins
-    .pipe(customPlumber())
+    .pipe(customPlumber('Error Running Sass'))
     .pipe(sass())
     .pipe(gulp.dest('app/css'))
 })
@@ -18,9 +18,13 @@ function errorHandler(err){
   this.emit('end');
 }
 
-function customPlumber(){
+function customPlumber(errTitle){
   return plumber({
-    errorHandler: notify.onError("Error: <%= error.message %>")
+    errorHandler: notify.onError({
+      // Customizing error title
+      title: errTitle || "Error running Gulp",
+      message: "Error: <%= error.message %>",
+    })
   });
 }
 
