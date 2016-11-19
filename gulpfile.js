@@ -69,3 +69,9 @@ gulp.task('images', function(){
     })))
     .pipe(gulp.dest('dist/images'))
 });
+
+gulp.task('fonts', function(){
+  return gulp.src('app/fonts/**/*')
+  // Copying fonts to dist
+    .pipe(gulp.dest('dist/fonts'))
+})
