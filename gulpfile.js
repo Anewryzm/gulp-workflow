@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
+var notify = require('gulp-notify');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -19,12 +20,7 @@ function errorHandler(err){
 
 function customPlumber(){
   return plumber({
-    errorHandler: function(err){
-      // Logs error in console
-      console.log(err.stack);
-      // Ends the current pipe, so Gulp watch doesn't break
-      this.emit('end');
-    }
+    errorHandler: notify.onError("Error: <%= error.message %>")
   });
 }
 
