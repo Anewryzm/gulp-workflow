@@ -12,6 +12,10 @@ gulp.task('sass', function(){
     .pipe(customPlumber('Error Running Sass'))
     .pipe(sass())
     .pipe(gulp.dest('app/css'))
+    // Tells Browser Sync to reload files task is done
+    .pipe(browserSync.reload({
+      stream: true
+    }))
 })
 
 function errorHandler(err){
