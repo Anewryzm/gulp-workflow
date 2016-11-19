@@ -1,12 +1,14 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var plumber = require('gulp-plumber');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
   // in app/scss and children dirs
   return gulp.src('app/scss/**/*.scss')
-  // Listen for errors in sass()
-    .pipe(sass().on('error', errorHandler))
+  // Check for errors all plugins
+    .pipe(plumber())
+    .pipe(sass())
     .pipe(gulp.dest('app/css'))
 })
 
@@ -18,3 +20,4 @@ function errorHandler(err){
 gulp.task('watch', function(){
   gulp.watch('app/scss/**/*.scss', ['sass']);
 })
+
