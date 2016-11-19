@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
+var browserSync = require('browser-sync');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -32,3 +33,10 @@ gulp.task('watch', ['sass'], function(){
   gulp.watch('app/scss/**/*.scss', ['sass']);
 })
 
+gulp.task('browserSync', function(){
+  browserSync({
+    server: {
+      baseDir: 'app'
+    },
+  })
+})

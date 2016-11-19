@@ -9,6 +9,7 @@
   "author": "Enrique Cardoza",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.18.1",
     "gulp": "^3.9.1",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
