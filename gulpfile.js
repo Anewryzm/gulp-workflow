@@ -4,6 +4,8 @@ var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
 var browserSync = require('browser-sync');
 var useref = require('gulp-useref');
+var uglify = require('gulp-uglify');
+var gulpIf = require('gulp-if');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -48,6 +50,9 @@ gulp.task('browserSync', function(){
 
 gulp.task('useref', function(){
   return gulp.src('./app/*.html')
+  // Concatenates with useref
     .pipe(useref())
+    // Minifies only if it's a Javascript file
+    .pipe(gulpIf('*.js', uglify()))
     .pipe(gulp.dest('dist'))
 })
