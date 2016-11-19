@@ -10,6 +10,7 @@ var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var del = require('del');
+var runSequence = require('run-sequence');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -85,6 +86,12 @@ gulp.task('cache:clear', function(callback){
   return cache.clearAll(callback)
 })
 
-gulp.task('build', ['clean:dist', 'sass', 'useref', 'images', 'fonts'], function(){
+gulp.task('build', function(callback){
+  // Running first the clean:dist
+  runSequence('clean:dist',
+  // Running task in parallel
+    ['sass', 'useref', 'images', 'fonts'],
+    callback)
   console.log('Building files!');
 })
+
