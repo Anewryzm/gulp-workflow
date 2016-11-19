@@ -7,7 +7,7 @@ gulp.task('sass', function(){
   // in app/scss and children dirs
   return gulp.src('app/scss/**/*.scss')
   // Check for errors all plugins
-    .pipe(plumber())
+    .pipe(customPlumber())
     .pipe(sass())
     .pipe(gulp.dest('app/css'))
 })
@@ -15,6 +15,17 @@ gulp.task('sass', function(){
 function errorHandler(err){
   console.log(err.toString());
   this.emit('end');
+}
+
+function customPlumber(){
+  return plumber({
+    errorHandler: function(err){
+      // Logs error in console
+      console.log(err.stack);
+      // Ends the current pipe, so Gulp watch doesn't break
+      this.emit('end');
+    }
+  });
 }
 
 gulp.task('watch', function(){
