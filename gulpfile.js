@@ -9,6 +9,7 @@ var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
+var del = require('del');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -74,4 +75,8 @@ gulp.task('fonts', function(){
   return gulp.src('app/fonts/**/*')
   // Copying fonts to dist
     .pipe(gulp.dest('dist/fonts'))
+})
+
+gulp.task('clean:dist', function(){
+  return del.sync('dist');
 })
