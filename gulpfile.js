@@ -84,3 +84,7 @@ gulp.task('clean:dist', function(){
 gulp.task('cache:clear', function(callback){
   return cache.clearAll(callback)
 })
+
+gulp.task('build', ['clean:dist', 'sass', 'useref', 'images', 'fonts'], function(){
+  console.log('Building files!');
+})
