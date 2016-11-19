@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
 var browserSync = require('browser-sync');
+var useref = require('gulp-useref');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -43,4 +44,10 @@ gulp.task('browserSync', function(){
       baseDir: 'app'
     },
   })
+})
+
+gulp.task('useref', function(){
+  return gulp.src('./app/*.html')
+    .pipe(useref())
+    .pipe(gulp.dest('dist'))
 })
