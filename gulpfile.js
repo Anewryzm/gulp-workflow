@@ -7,6 +7,7 @@ var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
+var imagemin = require('gulp-imagemin');
 
 gulp.task('sass', function(){
   // Get all files ending with .scss
@@ -59,3 +60,11 @@ gulp.task('useref', function(){
     .pipe(gulpIf('*.css', cssnano()))
     .pipe(gulp.dest('dist'))
 })
+
+gulp.task('images', function(){
+  return gulp.src('app/images/**/*.+(png|jpg|jpeg|gif|svg)')
+    .pipe(imagemin({
+      progressive: true
+    }))
+    .pipe(gulp.dest('dist/images'))
+});
